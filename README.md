@@ -20,6 +20,8 @@ En las naves hay liga de Sepak Takraw, voleibol y Rugby Subacuático:
 
 Estructura a la hora de programar
 Vamos a tener dos carpetas principales
+Escribir en la carpeta temporal y de temporal a Main
+
 - ⚫carpeta Main : es la carpeta donde está todos los datos de las pernas , club , equipo y El Ranking Actualizado , para la actualizacion del ranking se debe leer la carpeta "Temporal" para obtener datos de la última partida
 - ⚫carpeta Temporal : es una carpeta que se sobreEscribe completamente cuando se de el boton run y es la carpeta donde se guardará los datos del último partido
 
@@ -30,3 +32,9 @@ Vamos a tener dos carpetas principales
 - En el fichero que se va guardar la informacion solamente debe guardar los datos de cada persona , club , equipo y EL RANKINGGG !!ACTUALIZADO!!
 - Lo único que se debe escribir con el scanner el usuario es cuando se quiera fichar un jugador
 - el numero de club , equipo es fijo es decir que no se puede cambiar
+
+Estructura de carpeta Temporal
+·jugadores
+id + marcados + sanciones + valor
+·partida
+
