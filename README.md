@@ -5,6 +5,7 @@
 - Pedro Perez
 - Diego Hernández
 
+AL DESCARGAR EL ARCHIVO, PONER UN PUNTO EN LA CARPETA SETTINGS PARA QUE FUNCIONE CON ECLIPSE (.settings)
 <hr/>
 Vamos a realizar un programa para gestionar la información de la nueva NavesLiga 
 En las naves hay liga de Sepak Takraw, voleibol y Rugby Subacuático:
