@@ -14,6 +14,8 @@ En las naves hay liga de Sepak Takraw, voleibol y Rugby Subacuático:
 -	Un jugador solo puede pertenecer a un equipo y un equipo solo a un deporte. 
 -	Habrá un fichero NavesLigasData, donde se guarde toda la información relativa a la NavesLiga, Deportes, clubs y jugadores.
 -	Periódicamente se cargará un fichero con los resultados y los fichajes de la semana que actualizará el fichero general NavesLigas.
+- hay que hacer un ranking de equipos
+- hay que hacer un ranking de jugadores dentro de un equipo
 </hr>
 
 Estructura a la hora de programar
