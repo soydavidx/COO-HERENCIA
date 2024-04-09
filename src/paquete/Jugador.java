@@ -19,6 +19,8 @@ public class Jugador extends Persona {
 	private double sanciones;
 	private int marcados;
 	private double valor;
+	private int PuestoInteriorEquipo;// este atributo se modificara cada vez que se cargue la aplicacion leyendo
+	// datos de la carpeta temporal
 
 	public Jugador(String nombre, String apellido, String posicion) {
 		super(nombre, apellido);
@@ -130,6 +132,15 @@ public class Jugador extends Persona {
 	public static void setListaJugador(ArrayList<Jugador> listaJugador) {
 		ListaJugador = listaJugador;
 	}
+
+	public int getPuestoInteriorEquipo() {
+		return PuestoInteriorEquipo;
+	}
+
+	public void setPuestoInteriorEquipo(int puestoInteriorEquipo) {
+		PuestoInteriorEquipo = puestoInteriorEquipo;
+	}
+	
 	// termina el getter y setter
 
 }
