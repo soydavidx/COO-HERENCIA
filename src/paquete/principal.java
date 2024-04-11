@@ -10,6 +10,8 @@ public class principal {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		// actualizar los datos de los jugadores al la aplicacion
+		System.out.println("Practica nº10: Herencia Cooperativa");
+		//Hecho por David, Diego y Peter
 		Jugador.ActualizarJugador();
 
 	}
