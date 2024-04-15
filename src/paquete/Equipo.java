@@ -9,13 +9,13 @@ import java.util.Collections;
 public class Equipo {
 	private static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
 	private static int contador = 0;
-	private ArrayList<Persona> GrupoPersonales = new ArrayList<>();
+
 	private int id;
 
 	private String nombreEquipo;
 	private int nJugadores;
 
-	private ArrayList<Persona> RankingInter = new ArrayList<>();
+	private ArrayList<Persona> GrupoPersonales = new ArrayList<>();
 	private Deporte deporte;
 	private int PuestoRanking;// este atributo se modificara cada vez que se cargue la aplicacion leyendo
 	private int puntos;
@@ -47,9 +47,9 @@ public class Equipo {
 			// quitar el primero de valores para buscar el siguiente puesto
 			Valores.remove(Valores.indexOf(ActualMax));
 		}
-		//Actualizar el puesto del jugador
+		// Actualizar el puesto del jugador
+		int i = 0;
 		for (Double double1 : RankingInter) {
-			int i = 0;
 			for (Persona persona : GrupoPersonales) {
 				Jugador jugador = (Jugador) persona;
 				if (persona instanceof Jugador) {
