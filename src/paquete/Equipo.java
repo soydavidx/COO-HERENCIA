@@ -64,6 +64,7 @@ public class Equipo {
 	}
 
 	// metodo para actualizar el Datos del equipo cada vez que se inicie el programa
+	//eliminar ?
 	private void ActualizarEquipo() throws IOException {
 		BufferedReader bfr = new BufferedReader(new FileReader("Equipo.txt"));
 		String linea = "";

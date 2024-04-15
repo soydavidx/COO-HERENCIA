@@ -31,9 +31,9 @@ public class principal {
 			System.out.println("Vuelva a introducir un nombre del equipo existente Porfavor");
 			MostrarDatos();
 		}
-		
-		//procesos para mostrar informacion de un equipo
-		
+
+		// procesos para mostrar informacion de un equipo
+
 		scanner.close();
 	}
 
@@ -45,12 +45,6 @@ public class principal {
 		if (verificarNombreEquipo(NombreEquipo) == false) {
 			// procesos para fichar un jugador
 
-			
-			
-			
-			
-			
-			
 		} else {
 			System.out.println("Vuelva a introducir un nombre del equipo existente Porfavor");
 			fichar();
@@ -76,14 +70,6 @@ public class principal {
 
 		// procesos para vender el jugador
 
-		
-		
-		
-		
-		
-		
-		
-		
 		scanner.close();
 	}
 
@@ -102,28 +88,32 @@ public class principal {
 		BufferedWriter bfw = new BufferedWriter(new FileWriter("Temporal.txt"));
 		try {
 			// escribir los datos de cada jugador en la carpeta temporal
-			for (Persona persona : Persona.getListaPersona()) {
-				// formato : Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones,
-				// Valor, PuestoInterior
-				if (persona instanceof Jugador) {
-					Jugador jugador = (Jugador) persona;
-					bfw.write(jugador.getIdJugador() + signo + jugador.getNombre() + signo + jugador.getApellido() + signo + jugador.getProfesion()
-							+ signo + jugador.getPosicion() + jugador.getMarcados() + signo + jugador.getSanciones()
-							+ signo + jugador.getValor());
-					bfw.write(System.lineSeparator());
-				}
-				// formato : Id, nombre, apellido, Profesion
-				if (persona instanceof Entrenador) {
-					Entrenador entrenador = (Entrenador) persona;
-					bfw.write(entrenador.getNombre() + signo + entrenador.getApellido() + signo
-							+ entrenador.getProfesion());
-				}
-				// formato : Id, nombre, apellido, Profesion
-				if (persona instanceof Director) {
-					Director director = (Director) persona;
-					bfw.write(director.getNombre() + signo + director.getApellido() + signo + director.getProfesion());
-				}
+			for (Equipo equipo : Equipo.getListaEquipos()) {
 
+				for (Persona persona : Persona.getListaPersona()) {
+					// formato : Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones,
+					// Valor, PuestoInterior
+					if (persona instanceof Jugador) {
+						Jugador jugador = (Jugador) persona;
+						bfw.write(jugador.getIdJugador() + signo + jugador.getNombre() + signo + jugador.getApellido()
+								+ signo + jugador.getProfesion() + signo + jugador.getPosicion() + jugador.getMarcados()
+								+ signo + jugador.getSanciones() + signo + jugador.getValor());
+						bfw.write(System.lineSeparator());
+					}
+					// formato : Id, nombre, apellido, Profesion
+					if (persona instanceof Entrenador) {
+						Entrenador entrenador = (Entrenador) persona;
+						bfw.write(entrenador.getNombre() + signo + entrenador.getApellido() + signo
+								+ entrenador.getProfesion());
+					}
+					// formato : Id, nombre, apellido, Profesion
+					if (persona instanceof Director) {
+						Director director = (Director) persona;
+						bfw.write(director.getNombre() + signo + director.getApellido() + signo
+								+ director.getProfesion());
+					}
+
+				}
 			}
 		} catch (Exception e) {
 			System.err.println("Error al escribir datos jugador");
