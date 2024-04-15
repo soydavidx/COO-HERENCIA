@@ -34,19 +34,42 @@ public class Jugador extends Persona {
 
 	// formato : IdJugador, Marcados, Sanciones, Valor
 
-	public static void ActualizarJugador() throws IOException {
+	public static void ActualizarEquipo() throws IOException {
 		// leer de un archivo
 		BufferedReader bfr = new BufferedReader(new FileReader("Temporal.txt"));
 		try {
 			String linea = "";
 			while (linea != null) {
 				linea = bfr.readLine();
+				
+				do {
+					
+					if (linea.equals("#")) {
+						
+						
+						
+					}
+					
+					
+					
+					
+					
+					
+				} while (linea == "-");
+				
+				
+				
+				
+				
+				
 				// declarar valores de los datos del jugador
 				String[] datos = linea.split("#");
 				int id = Integer.parseInt(datos[0]);
 				int marcados = Integer.parseInt(datos[1]);
 				double Sanciones = Double.parseDouble(datos[2]);
 				double valor = Double.parseDouble(datos[3]);
+				int PuestoInteriorEquipo = Integer.parseInt(datos[4]);
+				String posicion = datos[5];
 				// actualizar los datos de cada jugador
 				for (Persona persona : Persona.getListaPersona()) {
 					if (persona instanceof Jugador) {
@@ -55,6 +78,8 @@ public class Jugador extends Persona {
 							jugador.setMarcados(marcados);
 							jugador.setSanciones(Sanciones);
 							jugador.setValor(valor);
+							jugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
+							jugador.setPosicion(posicion);
 							break;
 						}
 					}

@@ -1,6 +1,11 @@
 package paquete;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Equipo {
 	private static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
@@ -17,7 +22,7 @@ public class Equipo {
 	private int puntos;
 	// datos de la carpeta temporal
 
-	public Equipo(int id, String nombreEquipo, int nJugadores, ArrayList<Persona> grupoJugadores, Deporte deporte) {
+	public Equipo(int id, String nombreEquipo, int nJugadores, ArrayList<Persona> GrupoPersonales, Deporte deporte) {
 		id = contador;
 		this.nombreEquipo = nombreEquipo;
 		this.nJugadores = nJugadores;
@@ -27,7 +32,57 @@ public class Equipo {
 	}
 	
 	private void EstablecerRankingInterior() {
+		ArrayList<Double>Valores = new ArrayList<>();
+		for (Persona persona : GrupoPersonales) {
+			if (persona instanceof Jugador) {
+				Jugador jugador = (Jugador) persona;
+				Valores.add(jugador.getValor());
+			}
+		}
 		
+		ArrayList<Double>RankingInter = new ArrayList<>();
+		for(int i = 0; i < RankingInter.size(); i++){
+			double ActualMax = Collections.max(RankingInter);
+			
+			RankingInter.
+		}
+		
+		
+		
+		for(int i = 1; i < this.getDeporte().getNparticipantes(); i++){
+			double ValorRanking = 0;
+			double ValorMax = 0;
+			
+			for (Persona persona : GrupoPersonales) {
+			if (persona instanceof Jugador) {
+				Jugador jugador = (Jugador) persona;
+				if (jugador.getValor() < ValorMax) {
+					
+				}
+			}
+		}
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+	}
+	
+	//metodo para actualizar el Datos del equipo cada vez que se inicie el programa
+	private void ActualizarEquipo() throws IOException {
+		BufferedReader bfr = new BufferedReader(new FileReader("Equipo.txt"));
+		String linea = "";
+		while (linea != null ) {
+			linea = bfr.readLine();
+		}
 	}
 	
 	

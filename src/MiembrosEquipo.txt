@@ -1,11 +1,13 @@
 -
 Id equipo 1 , nombre equipo , 
+#
 Datos jugador1
 Datos jugador2
 Datos entrenador1
 Datos director1
 -
 Id equipo 2
+#
 Datos jugador3
 Datos jugador4
 Datos entrenador2
