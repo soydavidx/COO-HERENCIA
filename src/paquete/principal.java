@@ -42,7 +42,7 @@ public class principal {
 		Scanner scanner = new Scanner(System.in);
 		String NombreEquipo = scanner.nextLine();
 		// verificar si el equipo tecleado existe
-		if (verificarNombreEquipo(NombreEquipo) == true) {
+		if (verificarNombreEquipo(NombreEquipo) == false) {
 			// procesos para fichar un jugador
 
 			

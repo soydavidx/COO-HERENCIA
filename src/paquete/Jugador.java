@@ -22,6 +22,7 @@ public class Jugador extends Persona {
 	private int marcados;
 	private double valor;
 	private int PuestoInteriorEquipo;
+	private boolean titular;
 
 	public Jugador(String nombre, String apellido, String posicion, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
@@ -167,6 +168,14 @@ public class Jugador extends Persona {
 
 	public static void setTotalMarcados(double totalMarcados) {
 		TotalMarcados = totalMarcados;
+	}
+	
+	public boolean isTitular() {
+		return titular;
+	}
+
+	public void setTitular(boolean titular) {
+		this.titular = titular;
 	}
 
 	public int getPuestoInteriorEquipo() {
