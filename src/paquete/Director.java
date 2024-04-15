@@ -7,7 +7,7 @@ public class Director extends Persona {
 
 	private int id;
 
-	public Director(String nombre, String apellido, int id, String profesion, int equipo) {
+	public Director(String nombre, String apellido, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
 		id = contador;
 		contador++;
