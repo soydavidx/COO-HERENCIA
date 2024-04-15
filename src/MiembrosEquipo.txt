@@ -1,8 +1,8 @@
 //formato : id, nombre, nJugadores, nombre deporte, puntos, puesto equipo Liga
 idEquipo, nombreEquipo, nJugadores, nombre deporte, puntos, puesto equipo Liga
-$
-// formato :Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones, valor,puestoInterior, titular, Valor, PuestoInterior
-Datos jugador1
+
+// formato :Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones, valor , PuestoInterior, titular
+$Datos jugador1
 Datos jugador2
 // formato : Id, nombre, apellido, Profesion
 Datos entrenador1
