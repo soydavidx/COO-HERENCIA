@@ -12,8 +12,9 @@ public class principal {
 		// TODO Auto-generated method stub
 		// actualizar los datos de los jugadores al la aplicacion
 		System.out.println("Practica nº10: Herencia Cooperativa");
+		System.out.println("Un video mas mi gente para perder el tiempo");
 		// Hecho por David, Diego y Peter
-		Jugador.ActualizarJugador();
+		Jugador.ActualizarEquipo();
 
 	}
 
