@@ -18,7 +18,7 @@ public class Equipo {
 	private ArrayList<Persona> GrupoPersonales = new ArrayList<>();
 	private Deporte deporte;
 	private int PuestoRanking;// este atributo se modificara cada vez que se cargue la aplicacion leyendo
-	private int puntos;
+	private double puntos;
 	// datos de la carpeta temporal
 
 	public Equipo(int id, String nombreEquipo, int nJugadores, ArrayList<Persona> GrupoPersonales, Deporte deporte) {
@@ -64,7 +64,7 @@ public class Equipo {
 	}
 
 	// metodo para actualizar el Datos del equipo cada vez que se inicie el programa
-	//eliminar ?
+	// eliminar ?
 	private void ActualizarEquipo() throws IOException {
 		BufferedReader bfr = new BufferedReader(new FileReader("Equipo.txt"));
 		String linea = "";
@@ -113,11 +113,11 @@ public class Equipo {
 		PuestoRanking = puestoRanking;
 	}
 
-	public int getPuntos() {
+	public double getPuntos() {
 		return puntos;
 	}
 
-	public void setPuntos(int puntos) {
+	public void setPuntos(double puntos) {
 		this.puntos = puntos;
 	}
 

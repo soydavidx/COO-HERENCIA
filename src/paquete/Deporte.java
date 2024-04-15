@@ -1,7 +1,9 @@
 package paquete;
 
-public class Deporte {
+import java.util.ArrayList;
 
+public class Deporte {
+	private static ArrayList<Deporte>ListaDeporte = new ArrayList<>();
 	private static int contador = 0;
 	private int id;
 	private String nombre;
@@ -32,6 +34,14 @@ public class Deporte {
 	}
 	public void setNparticipantes(int nparticipantes) {
 		Nparticipantes = nparticipantes;
+	}
+
+	public static ArrayList<Deporte> getListaDeporte() {
+		return ListaDeporte;
+	}
+
+	public static void setListaDeporte(ArrayList<Deporte> listaDeporte) {
+		ListaDeporte = listaDeporte;
 	}
 	
 }

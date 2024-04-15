@@ -23,6 +23,7 @@ public class Jugador extends Persona {
 	private double valor;
 	private int PuestoInteriorEquipo;
 	private boolean titular;
+	private int IdEquipo;
 
 	public Jugador(String nombre, String apellido, String posicion, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
@@ -41,45 +42,73 @@ public class Jugador extends Persona {
 		try {
 			String linea = "";
 			while (linea != null) {
-				linea = bfr.readLine();
 
-				do {
-
-					if (linea.contains("-")) {
+				while (!linea.contains("-")) {
+					linea = bfr.readLine();
+					int idEquipo = 0;
+					ArrayList<Persona> MienbrosEquipo = new ArrayList<>();
+					Equipo equipo = null;
+					// caso equipo
+					if (linea.contains("$")) {
 						// declarar valores de los datos del equipo
 						String[] datos = linea.split("#");
-						int idEquipo = Integer.parseInt(datos[0]);
-					}
-
-					if (linea.contains("$")) {
-						// declarar valores de los datos del jugador
-						String[] datos = linea.split("#");
-						int id = Integer.parseInt(datos[0]);
-						int marcados = Integer.parseInt(datos[1]);
-						double Sanciones = Double.parseDouble(datos[2]);
-						double valor = Double.parseDouble(datos[3]);
-						int PuestoInteriorEquipo = Integer.parseInt(datos[4]);
-						String posicion = datos[5];
-						boolean titular = Boolean.parseBoolean(datos[6]);
-						// actualizar los datos de cada jugador
-						for (Persona persona : Persona.getListaPersona()) {
-							if (persona instanceof Jugador) {
-								Jugador jugador = (Jugador) persona;
-								if (jugador.getIdJugador() == id) {
-									jugador.setMarcados(marcados);
-									jugador.setSanciones(Sanciones);
-									jugador.setValor(valor);
-									jugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
-									jugador.setPosicion(posicion);
-									jugador.setTitular(titular);
-									break;
-								}
+						idEquipo = Integer.parseInt(datos[0]);
+						String nombreEquipo = datos[1];
+						int Njugadores = Integer.parseInt(datos[2]);
+						String nombreDeporte = datos[3];
+						double puntos = Double.parseDouble(datos[4]);
+						int puestoEquipo = Integer.parseInt(datos[5]);
+						// encontrar la referencia del equipo
+						Deporte deporteEquipo = null;
+						for (Deporte deporte : Deporte.getListaDeporte()) {
+							if (deporte.getNombre().equals(nombreDeporte)) {
+								deporteEquipo = deporte;
+								break;
 							}
+						}
+						// crear el equipo
+						equipo = new Equipo(idEquipo, nombreEquipo, Njugadores, MienbrosEquipo, deporteEquipo);
+						// caso Persona
+					} else {
+						// actualizar los datos de cada jugador
+						String[] datos = linea.split("#");
+						String nombre = datos[1];
+						String apellido = datos[2];
+						String profesion = datos[3];
+						// caso jugador
+						if (linea.contains("@")) {
+							// declarar valores de los datos del jugador
+							int marcados = Integer.parseInt(datos[4]);
+							double Sanciones = Double.parseDouble(datos[5]);
+							double valor = Double.parseDouble(datos[6]);
+							int PuestoInteriorEquipo = Integer.parseInt(datos[7]);
+							String posicion = datos[8];
+							boolean titular = Boolean.parseBoolean(datos[9]);
+							Jugador elJugador = new Jugador(nombre, apellido, posicion, profesion, idEquipo);
+							elJugador.setMarcados(marcados);
+							elJugador.setSanciones(Sanciones);
+							elJugador.setValor(valor);
+							elJugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
+							elJugador.setPosicion(posicion);
+							elJugador.setTitular(titular);
+
+							MienbrosEquipo.add(elJugador);
+							Persona.getListaPersona().add(elJugador);
+							// caso entrenador
+						} else if (linea.contains("%")) {
+							Entrenador entrenador = new Entrenador(nombre, apellido, profesion, idEquipo);
+							MienbrosEquipo.add(entrenador);
+							Persona.getListaPersona().add(entrenador);
+							// caso director
+						} else if (linea.contains("&")) {
+							Director director = new Director(nombre, apellido, profesion, idEquipo);
+							MienbrosEquipo.add(director);
+							Persona.getListaPersona().add(director);
 						}
 
 					}
-
-				} while (linea.contains("-"));
+					Equipo.getListaEquipos().add(equipo);
+				}
 
 			}
 		} catch (Exception e) {
@@ -178,6 +207,14 @@ public class Jugador extends Persona {
 
 	public void setPuestoInteriorEquipo(int puestoInteriorEquipo) {
 		PuestoInteriorEquipo = puestoInteriorEquipo;
+	}
+
+	public int getIdEquipo() {
+		return IdEquipo;
+	}
+
+	public void setIdEquipo(int idEquipo) {
+		IdEquipo = idEquipo;
 	}
 
 	// termina el getter y setter
