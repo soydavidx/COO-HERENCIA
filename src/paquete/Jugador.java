@@ -28,7 +28,7 @@ public class Jugador extends Persona {
 		super(nombre, apellido, profesion, equipo);
 		idJugador = contador;
 		this.posicion = posicion;
-		//valor calculado con el metodo CalcularValor
+		// valor calculado con el metodo CalcularValor
 		valor = CalcularValor();
 		contador++;
 	}
@@ -42,49 +42,44 @@ public class Jugador extends Persona {
 			String linea = "";
 			while (linea != null) {
 				linea = bfr.readLine();
-				
+
 				do {
-					
-					if (linea.equals("#")) {
-						
-						
-						
+
+					if (linea.contains("-")) {
+						// declarar valores de los datos del equipo
+						String[] datos = linea.split("#");
+						int idEquipo = Integer.parseInt(datos[0]);
 					}
-					
-					
-					
-					
-					
-					
-				} while (linea == "-");
-				
-				
-				
-				
-				
-				
-				// declarar valores de los datos del jugador
-				String[] datos = linea.split("#");
-				int id = Integer.parseInt(datos[0]);
-				int marcados = Integer.parseInt(datos[1]);
-				double Sanciones = Double.parseDouble(datos[2]);
-				double valor = Double.parseDouble(datos[3]);
-				int PuestoInteriorEquipo = Integer.parseInt(datos[4]);
-				String posicion = datos[5];
-				// actualizar los datos de cada jugador
-				for (Persona persona : Persona.getListaPersona()) {
-					if (persona instanceof Jugador) {
-						Jugador jugador = (Jugador) persona;
-						if (jugador.getIdJugador() == id) {
-							jugador.setMarcados(marcados);
-							jugador.setSanciones(Sanciones);
-							jugador.setValor(valor);
-							jugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
-							jugador.setPosicion(posicion);
-							break;
+
+					if (linea.contains("$")) {
+						// declarar valores de los datos del jugador
+						String[] datos = linea.split("#");
+						int id = Integer.parseInt(datos[0]);
+						int marcados = Integer.parseInt(datos[1]);
+						double Sanciones = Double.parseDouble(datos[2]);
+						double valor = Double.parseDouble(datos[3]);
+						int PuestoInteriorEquipo = Integer.parseInt(datos[4]);
+						String posicion = datos[5];
+						boolean titular = Boolean.parseBoolean(datos[6]);
+						// actualizar los datos de cada jugador
+						for (Persona persona : Persona.getListaPersona()) {
+							if (persona instanceof Jugador) {
+								Jugador jugador = (Jugador) persona;
+								if (jugador.getIdJugador() == id) {
+									jugador.setMarcados(marcados);
+									jugador.setSanciones(Sanciones);
+									jugador.setValor(valor);
+									jugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
+									jugador.setPosicion(posicion);
+									jugador.setTitular(titular);
+									break;
+								}
+							}
 						}
+
 					}
-				}
+
+				} while (linea.contains("-"));
 
 			}
 		} catch (Exception e) {
@@ -94,25 +89,24 @@ public class Jugador extends Persona {
 		}
 
 	}
-	
-	//despues de haber jugado una partida
+
+	// despues de haber jugado una partida
 	private void JugadorMarcar() {
-	// poner un generador de numero aleatorio
-	// con el numero generado actualizar marcados del jugador
-	}
-	
-	//despues de haber jugado una partida
-	private void JugadorSancion() {
-	// poner un generador de numero aleatorio
-	// con el numero generado actualizar marcados del jugador
+		// poner un generador de numero aleatorio
+		// con el numero generado actualizar marcados del jugador
 	}
 
-	//despues de haber jugado una partida
+	// despues de haber jugado una partida
+	private void JugadorSancion() {
+		// poner un generador de numero aleatorio
+		// con el numero generado actualizar marcados del jugador
+	}
+
+	// despues de haber jugado una partida
 	private double CalcularValor() {
 		return (marcados * 1000) - (sanciones * 500);
 	}
-	
-	
+
 	// empieza el getter y setter
 	public int getIdJugador() {
 		return idJugador;
@@ -169,7 +163,7 @@ public class Jugador extends Persona {
 	public static void setTotalMarcados(double totalMarcados) {
 		TotalMarcados = totalMarcados;
 	}
-	
+
 	public boolean isTitular() {
 		return titular;
 	}

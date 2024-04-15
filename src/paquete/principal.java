@@ -85,19 +85,23 @@ public class principal {
 
 	public static void EscribirDatosJugador() throws IOException {
 		// escribir en la carpeta temporal y de temporal a Main
-		BufferedWriter bfw = new BufferedWriter(new FileWriter("Temporal.txt"));
+		BufferedWriter bfw = new BufferedWriter(new FileWriter("MiembrosEquipo.txt"));
 		try {
 			// escribir los datos de cada jugador en la carpeta temporal
 			for (Equipo equipo : Equipo.getListaEquipos()) {
-
-				for (Persona persona : Persona.getListaPersona()) {
-					// formato : Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones,
-					// Valor, PuestoInterior
+				// formato : id, nombre, nJugadores, nombre deporte, puntos, puesto
+				bfw.write(equipo.getId() + signo + equipo.getNombreEquipo() + signo + equipo.getnJugadores() + signo
+						+ equipo.getDeporte().getNombre() + signo + equipo.getPuntos() + signo
+						+ equipo.getPuestoRanking());
+				bfw.write(System.lineSeparator());
+				for (Persona persona : equipo.getGrupoPersonales()) {
+					// formato :Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones, valor , PuestoInterior, titular
 					if (persona instanceof Jugador) {
 						Jugador jugador = (Jugador) persona;
 						bfw.write(jugador.getIdJugador() + signo + jugador.getNombre() + signo + jugador.getApellido()
 								+ signo + jugador.getProfesion() + signo + jugador.getPosicion() + jugador.getMarcados()
-								+ signo + jugador.getSanciones() + signo + jugador.getValor());
+								+ signo + jugador.getSanciones() + signo + jugador.getValor() + signo
+								+ jugador.getPuestoInteriorEquipo() + signo + jugador.isTitular());
 						bfw.write(System.lineSeparator());
 					}
 					// formato : Id, nombre, apellido, Profesion
@@ -105,15 +109,20 @@ public class principal {
 						Entrenador entrenador = (Entrenador) persona;
 						bfw.write(entrenador.getNombre() + signo + entrenador.getApellido() + signo
 								+ entrenador.getProfesion());
+						bfw.write(System.lineSeparator());
 					}
 					// formato : Id, nombre, apellido, Profesion
 					if (persona instanceof Director) {
 						Director director = (Director) persona;
 						bfw.write(director.getNombre() + signo + director.getApellido() + signo
 								+ director.getProfesion());
+						bfw.write(System.lineSeparator());
 					}
-
+					bfw.write("$");
+					bfw.write(System.lineSeparator());
 				}
+				bfw.write("-");
+				bfw.write(System.lineSeparator());
 			}
 		} catch (Exception e) {
 			System.err.println("Error al escribir datos jugador");
