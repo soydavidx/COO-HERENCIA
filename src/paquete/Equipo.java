@@ -21,7 +21,7 @@ public class Equipo {
 	private double puntos;
 	// datos de la carpeta temporal
 
-	public Equipo(int id, String nombreEquipo, int nJugadores, ArrayList<Persona> GrupoPersonales, Deporte deporte) {
+	public Equipo(String nombreEquipo, int nJugadores, ArrayList<Persona> GrupoPersonales, Deporte deporte) {
 		id = contador;
 		this.nombreEquipo = nombreEquipo;
 		this.nJugadores = nJugadores;
@@ -33,44 +33,107 @@ public class Equipo {
 	private void EstablecerRankingInterior() {
 		// Poblar los datos de valores de jugadores
 		ArrayList<Double> Valores = new ArrayList<>();
+		ArrayList<Integer> IdJugadores = new ArrayList<>(); 
 		for (Persona persona : GrupoPersonales) {
 			if (persona instanceof Jugador) {
 				Jugador jugador = (Jugador) persona;
 				Valores.add(jugador.getValor());
+				IdJugadores.add(jugador.getIdJugador());
 			}
 		}
-		// ordenar de mayo a menor
-		ArrayList<Double> RankingInter = new ArrayList<>();
+		// ordenar de mayor a menor
+		ArrayList<Integer> RankingInter = new ArrayList<>();
 		for (int i = 0; i < Valores.size(); i++) {
+			//Encontrar el jugador con mayor valor
 			double ActualMax = Collections.max(Valores);
-			RankingInter.add(ActualMax);
-			// quitar el primero de valores para buscar el siguiente puesto
+			//obtener el id del jugador del jugador con valor ActualMax
+			int IDJ = IdJugadores.get(Valores.indexOf(ActualMax));
+			//anadir al arraylist de puestos
+			RankingInter.add(IDJ);
+			// quitar de los arraylist para buscar el siguiente puesto
+			IdJugadores.remove(Valores.indexOf(ActualMax));
 			Valores.remove(Valores.indexOf(ActualMax));
 		}
 		// Actualizar el puesto del jugador
-		int i = 0;
-		for (Double double1 : RankingInter) {
+		for (int i = 0; i < RankingInter.size(); i++) {
 			for (Persona persona : GrupoPersonales) {
 				Jugador jugador = (Jugador) persona;
 				if (persona instanceof Jugador) {
-					if (jugador.getValor() == double1) {
+					if (jugador.getIdJugador() == RankingInter.get(i)) {
 						jugador.setPuestoInteriorEquipo(i);
+						break;
 					}
 				}
 			}
-			i++;
+			//sumar i para la siguiente reiteracion
 		}
-
 	}
 
 	// metodo para actualizar el Datos del equipo cada vez que se inicie el programa
-	// eliminar ?
-	private void ActualizarEquipo() throws IOException {
-		BufferedReader bfr = new BufferedReader(new FileReader("Equipo.txt"));
-		String linea = "";
-		while (linea != null) {
-			linea = bfr.readLine();
+	public static void ActualizarTodoEquipo() throws IOException {
+		BufferedReader bfr = new BufferedReader(new FileReader("MiembrosEquipo.txt"));
+		try {
+			String linea = "";
+			while (linea != null) {
+				while (!linea.contains("-")) {
+					linea = bfr.readLine();
+					int idEquipo = 0;
+					ArrayList<Persona> MienbrosEquipo = new ArrayList<>();
+					Equipo equipo = null;
+					// caso equipo
+					if (linea.contains("$")) {
+						CasoEquipo(linea, idEquipo, equipo, MienbrosEquipo);
+					// caso Persona	
+					} else {
+						// actualizar los datos de cada jugador
+						String[] datos = linea.split("#");
+						String nombre = datos[1];
+						String apellido = datos[2];
+						String profesion = datos[3];
+							// caso Jugador
+						if (linea.contains("@")) {
+							// crear el jugador y anadir al arraylist de miembrosEquipo
+							Jugador.CasoJugador(datos, nombre, apellido, profesion, idEquipo, MienbrosEquipo);
+							// caso Entrenador
+						} else if (linea.contains("%")) {
+							// crear el Entrenador y anadir al arraylist de miembrosEquipo
+							Entrenador.CasoEntrenador(nombre, apellido, profesion, idEquipo, MienbrosEquipo);
+							// caso Director
+						} else if (linea.contains("&")) {
+							// crear el Director y anadir al arraylist de miembrosEquipo
+							Director.CasoDirector(nombre, apellido, profesion, idEquipo, MienbrosEquipo);
+						}
+
+					}
+					Equipo.getListaEquipos().add(equipo);
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Error en la lectura para actualizacion jugador");
+		} finally {
+			bfr.close();
 		}
+	}
+
+	private static void CasoEquipo(String linea, int idEquipo, Equipo equipo, ArrayList<Persona> MienbrosEquipo) {
+		// declarar valores de los datos del equipo
+		String[] datos = linea.split("#");
+		idEquipo = Integer.parseInt(datos[0]);
+		String nombreEquipo = datos[1];
+		int Njugadores = Integer.parseInt(datos[2]);
+		String nombreDeporte = datos[3];
+		double puntos = Double.parseDouble(datos[4]);
+		int puestoEquipo = Integer.parseInt(datos[5]);
+		// encontrar la referencia del equipo
+		Deporte deporteEquipo = null;
+		for (Deporte deporte : Deporte.getListaDeporte()) {
+			if (deporte.getNombre().equals(nombreDeporte)) {
+				deporteEquipo = deporte;
+				break;
+			}
+		}
+		// crear el equipo
+		equipo = new Equipo(nombreEquipo, Njugadores, MienbrosEquipo, deporteEquipo);
 	}
 
 	public int getId() {
