@@ -1,26 +1,22 @@
 package paquete;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Deporte {
 
-	private static int contador = 0;
-	private int id;
+	public static ArrayList<Deporte> Deportes = new ArrayList<Deporte>();
 	private String nombre;
 	//numero de participantes
 	private int Nparticipantes;
 	
 	public Deporte(String nombre, int nparticipantes) {
-		id = contador;
 		this.nombre = nombre;
 		Nparticipantes = nparticipantes;
-		contador++;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,4 +30,14 @@ public class Deporte {
 		Nparticipantes = nparticipantes;
 	}
 	
+	public static void crearDeportes() throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("src/Deportes.txt"));
+		// AQUI GUARDAREMOS LAS LINEAS DEL FICHERO
+		String line;
+		// CON ESTE WHILE PODREMOS LEER LOS DATOS DEL FICHERO
+		while ((line = br.readLine()) != null) {
+			String[] datos = line.split(", ");
+			Deportes.add(new Deporte(datos[0], Integer.parseInt(datos[1])));
+		}
+	}
 }

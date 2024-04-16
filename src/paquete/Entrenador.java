@@ -1,12 +1,11 @@
 package paquete;
 
 public class Entrenador extends Persona {
-	private static int contador = 0;
-	private int id;
+	private static int contador = 1;
 
-	public Entrenador(String nombre, String apellido, int id, String profesion, int equipo) {
+	public Entrenador(String nombre, String apellido, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
-		id = contador;
+		super.setId(contador);
 		contador++;
 	}
 
@@ -31,12 +30,5 @@ public class Entrenador extends Persona {
 		}
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 }

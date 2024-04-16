@@ -1,3 +1,0 @@
-String nombre , int Nparticipantes
-basket , 6
-futbol , 5

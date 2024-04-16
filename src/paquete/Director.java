@@ -3,13 +3,11 @@ package paquete;
 import java.util.Scanner;
 
 public class Director extends Persona {
-	private static int contador;
+	private static int contador = 1;
 
-	private int id;
-
-	public Director(String nombre, String apellido, int id, String profesion, int equipo) {
+	public Director(String nombre, String apellido, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
-		id = contador;
+		super.setId(contador);
 		contador++;
 	}
 
@@ -25,12 +23,5 @@ public class Director extends Persona {
 
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 }

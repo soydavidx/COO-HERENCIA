@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Equipo {
-	private static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
-	private static int contador = 0;
+	public static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
+	private static int contador = 1;
 
 	private int id;
 
@@ -21,13 +21,10 @@ public class Equipo {
 	private int puntos;
 	// datos de la carpeta temporal
 
-	public Equipo(int id, String nombreEquipo, int nJugadores, ArrayList<Persona> GrupoPersonales, Deporte deporte) {
-		id = contador;
+	public Equipo(String nombreEquipo, Deporte deporte) {
+		this.id = contador++;
 		this.nombreEquipo = nombreEquipo;
-		this.nJugadores = nJugadores;
-		this.GrupoPersonales = GrupoPersonales;
 		this.deporte = deporte;
-		contador++;
 	}
 
 	private void EstablecerRankingInterior() {

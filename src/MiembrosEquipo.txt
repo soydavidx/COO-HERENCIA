@@ -1,18 +1,13 @@
-//formato : id, nombre, nJugadores, nombre deporte, puntos, puesto equipo Liga
-idEquipo, nombreEquipo, nJugadores, nombre deporte, puntos, puesto equipo Liga
-$
-// formato :Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones, valor,puestoInterior, titular, Valor, PuestoInterior
-Datos jugador1
-Datos jugador2
-// formato : Id, nombre, apellido, Profesion
-Datos entrenador1
-// formato : Id, nombre, apellido, Profesion
-Datos director1
--
-Id equipo 2
-$
-Datos jugador3
-Datos jugador4
-Datos entrenador2
-Datos director2
--
+AsaltaAbuelas1, 0, Sepak Takraw
+juan1, perez1, jugador, 1, posicion1, 0, 0
+juan2, perez2, jugador, 1, posicion2, 0, 0
+juan3, perez3, jugador, 1, posicion3, 0, 0
+juan6, perez6, jugador, 2, posicion1, 0, 0
+juan7, perez7, jugador, 2, posicion2, 0, 0
+juan8, perez8, jugador, 2, posicion3, 0, 0
+juan4, perez4, entrenador, 1
+juan9, perez9, entrenador, 2
+juan5, perez5, director, 1
+juan10, perez1, director, 2
+AsaltaAbuelas2, 0, Rugby Subacuatico
+AsaltaAbuelas3, 0, voleibol

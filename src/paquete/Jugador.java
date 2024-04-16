@@ -6,15 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Jugador extends Persona {
-
-	private static int contador;
-
-	private static double TotalSanciones;
-	private static double TotalMarcados;
-
-	private int idJugador;
+	private static int contador = 1;
 
 	private String posicion;
+	private double TotalSanciones;
+	private double TotalMarcados;
 
 	// estos atributo se modificara cada vez que se cargue la aplicacion leyendo
 	// datos de la carpeta temporal
@@ -24,12 +20,12 @@ public class Jugador extends Persona {
 	private int PuestoInteriorEquipo;
 	private boolean titular;
 
-	public Jugador(String nombre, String apellido, String posicion, String profesion, int equipo) {
+	public Jugador(String nombre, String apellido, String profesion, int equipo, String posicion, double TotalSanciones, double TotalMarcados) {
 		super(nombre, apellido, profesion, equipo);
-		idJugador = contador;
 		this.posicion = posicion;
-		// valor calculado con el metodo CalcularValor
-		valor = CalcularValor();
+		this.TotalSanciones = TotalSanciones;
+		this.TotalMarcados = TotalMarcados;
+		super.setId(contador);
 		contador++;
 	}
 
@@ -65,7 +61,7 @@ public class Jugador extends Persona {
 						for (Persona persona : Persona.getListaPersona()) {
 							if (persona instanceof Jugador) {
 								Jugador jugador = (Jugador) persona;
-								if (jugador.getIdJugador() == id) {
+								if (jugador.getId() == id) {
 									jugador.setMarcados(marcados);
 									jugador.setSanciones(Sanciones);
 									jugador.setValor(valor);
@@ -91,29 +87,8 @@ public class Jugador extends Persona {
 	}
 
 	// despues de haber jugado una partida
-	private void JugadorMarcar() {
-		// poner un generador de numero aleatorio
-		// con el numero generado actualizar marcados del jugador
-	}
-
-	// despues de haber jugado una partida
-	private void JugadorSancion() {
-		// poner un generador de numero aleatorio
-		// con el numero generado actualizar marcados del jugador
-	}
-
-	// despues de haber jugado una partida
 	private double CalcularValor() {
 		return (marcados * 1000) - (sanciones * 500);
-	}
-
-	// empieza el getter y setter
-	public int getIdJugador() {
-		return idJugador;
-	}
-
-	public void setIdJugador(int idJugador) {
-		this.idJugador = idJugador;
 	}
 
 	public String getPosicion() {
@@ -122,6 +97,22 @@ public class Jugador extends Persona {
 
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
+	}
+
+	public double getTotalSanciones() {
+		return TotalSanciones;
+	}
+
+	public void setTotalSanciones(double totalSanciones) {
+		TotalSanciones = totalSanciones;
+	}
+
+	public double getTotalMarcados() {
+		return TotalMarcados;
+	}
+
+	public void setTotalMarcados(double totalMarcados) {
+		TotalMarcados = totalMarcados;
 	}
 
 	public double getSanciones() {
@@ -146,22 +137,6 @@ public class Jugador extends Persona {
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	}
-
-	public static double getTotalSanciones() {
-		return TotalSanciones;
-	}
-
-	public static void setTotalSanciones(double totalSanciones) {
-		TotalSanciones = totalSanciones;
-	}
-
-	public static double getTotalMarcados() {
-		return TotalMarcados;
-	}
-
-	public static void setTotalMarcados(double totalMarcados) {
-		TotalMarcados = totalMarcados;
 	}
 
 	public boolean isTitular() {
