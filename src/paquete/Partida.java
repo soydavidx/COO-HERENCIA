@@ -3,6 +3,7 @@ package paquete;
 import java.util.ArrayList;
 
 public class Partida {
+	//No editada en el Pull Request
 	private static int contador = 0;
 
 	private static ArrayList<Partida> ListaPartida = new ArrayList<>();

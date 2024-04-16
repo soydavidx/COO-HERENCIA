@@ -1,0 +1,31 @@
+Inicio del programa
+
+lectura del archivo deporte (LeerDeporte)
+
+lectura del archivo MiembrosEquipo (ActualizarTodoEquipo)
+
+(EstablecerResultadosPartida)
+{puntuacion(x:y), sanciones de cada Equipo}
+
+(repartirMarcados)
+
+(repartirSanciones)
+
+(CalcularValor(cada jugador))
+
+(EstablecerRankingInterior)
+
+(EstablecerTitular)
+
+(RankingLiga)
+
+Pedir el usuario que funcion desea
+
+1.mostrar datos equipo
+2.fichar
+3.vender
+
+(fin ejecucion consola)
+
+guardar archivos
+Fin

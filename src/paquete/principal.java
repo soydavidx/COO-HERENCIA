@@ -14,6 +14,8 @@ public class principal {
 		System.out.println("Practica nº10: Herencia Cooperativa");
 		System.out.println("Un video mas mi gente para perder el tiempo");
 		Deporte.mostrarJugadoresDeportes();
+		Deporte.crearDeportes();
+		Persona.crearEquiposYJugadores();
 		// Hecho por David, Diego y Peter
 		//Equipo.ActualizarTodoEquipo();
 
@@ -84,6 +86,8 @@ public class principal {
 		return false;
 	}
 
+	
+	//MODIFICAR Y ACTUALIZAR ESTA CLASE A LA NUEVA ESTRUCTURA DE PETER (al final xd)
 	public static void EscribirDatosJugador() throws IOException {
 		BufferedWriter bfw = new BufferedWriter(new FileWriter("MiembrosEquipo.txt"));
 		try {
@@ -98,7 +102,7 @@ public class principal {
 					// formato :Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones, valor , PuestoInterior, titular
 					if (persona instanceof Jugador) {
 						Jugador jugador = (Jugador) persona;
-						bfw.write(jugador.getIdJugador() + signo + jugador.getNombre() + signo + jugador.getApellido()
+						bfw.write(jugador.getId() + signo + jugador.getNombre() + signo + jugador.getApellido()
 								+ signo + jugador.getProfesion() + signo + jugador.getPosicion() + jugador.getMarcados()
 								+ signo + jugador.getSanciones() + signo + jugador.getValor() + signo
 								+ jugador.getPuestoInteriorEquipo() + signo + jugador.isTitular());
