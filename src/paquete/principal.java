@@ -84,7 +84,6 @@ public class principal {
 	}
 
 	public static void EscribirDatosJugador() throws IOException {
-		// escribir en la carpeta temporal y de temporal a Main
 		BufferedWriter bfw = new BufferedWriter(new FileWriter("MiembrosEquipo.txt"));
 		try {
 			// escribir los datos de cada jugador en la carpeta temporal
