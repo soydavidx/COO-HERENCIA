@@ -13,8 +13,9 @@ public class principal {
 		// actualizar los datos de los jugadores al la aplicacion
 		System.out.println("Practica nº10: Herencia Cooperativa");
 		System.out.println("Un video mas mi gente para perder el tiempo");
+		Deporte.mostrarJugadoresDeportes();
 		// Hecho por David, Diego y Peter
-		Equipo.ActualizarTodoEquipo();
+		//Equipo.ActualizarTodoEquipo();
 
 	}
 
