@@ -9,12 +9,12 @@ public class principal {
 	public static String signo = "#";
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		// actualizar los datos de los jugadores al la aplicacion
 		System.out.println("Practica nº10: Herencia Cooperativa");
 		System.out.println("Un video mas mi gente para perder el tiempo");
 		// Hecho por David, Diego y Peter
-		Jugador.ActualizarEquipo();
+		Deporte.mostrarJugadoresDeportes();
+		//Jugador.ActualizarEquipo();
 
 	}
 
