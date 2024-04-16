@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Equipo {
-	private static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
-	private static int contador = 0;
+	public static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
+	private static int contador = 1;
 
 	private int id;
 
@@ -21,13 +21,11 @@ public class Equipo {
 	private double puntos;
 	// datos de la carpeta temporal
 
-	public Equipo(String nombreEquipo, int nJugadores, ArrayList<Persona> GrupoPersonales, Deporte deporte) {
-		id = contador;
+	public Equipo(String nombreEquipo, Deporte deporte) {
+		this.id = contador++;
 		this.nombreEquipo = nombreEquipo;
-		this.nJugadores = nJugadores;
-		this.GrupoPersonales = GrupoPersonales;
 		this.deporte = deporte;
-		contador++;
+		
 	}
 
 	private void EstablecerRankingInterior() {
@@ -38,7 +36,7 @@ public class Equipo {
 			if (persona instanceof Jugador) {
 				Jugador jugador = (Jugador) persona;
 				Valores.add(jugador.getValor());
-				IdJugadores.add(jugador.getIdJugador());
+				IdJugadores.add(jugador.getId());
 			}
 		}
 		// ordenar de mayor a menor
@@ -59,7 +57,7 @@ public class Equipo {
 			for (Persona persona : GrupoPersonales) {
 				Jugador jugador = (Jugador) persona;
 				if (persona instanceof Jugador) {
-					if (jugador.getIdJugador() == RankingInter.get(i)) {
+					if (jugador.getId() == RankingInter.get(i)) {
 						jugador.setPuestoInteriorEquipo(i);
 						break;
 					}
@@ -70,48 +68,11 @@ public class Equipo {
 	}
 
 	// metodo para actualizar el Datos del equipo cada vez que se inicie el programa
-	public static void ActualizarTodoEquipo() throws IOException {
-		BufferedReader bfr = new BufferedReader(new FileReader("MiembrosEquipo.txt"));
-		try {
-			String linea = "";
-			while (linea != null) {
-				while (!linea.contains("-")) {
-					linea = bfr.readLine();
-					int idEquipo = 0;
-					ArrayList<Persona> MienbrosEquipo = new ArrayList<>();
-					Equipo equipo = null;
-					// caso equipo
-					if (linea.contains("$")) {
-						CasoEquipo(linea, idEquipo, equipo, MienbrosEquipo);
-					// caso Persona	
-					} else {
-						// actualizar los datos de cada jugador
-						String[] datos = linea.split("#");
-						String nombre = datos[1];
-						String apellido = datos[2];
-						String profesion = datos[3];
-							// caso Jugador
-						if (linea.contains("@")) {
-							// crear el jugador y anadir al arraylist de miembrosEquipo
-							Jugador.CasoJugador(datos, nombre, apellido, profesion, idEquipo, MienbrosEquipo);
-							// caso Entrenador
-						} else if (linea.contains("%")) {
-							// crear el Entrenador y anadir al arraylist de miembrosEquipo
-							Entrenador.CasoEntrenador(nombre, apellido, profesion, idEquipo, MienbrosEquipo);
-							// caso Director
-						} else if (linea.contains("&")) {
-							// crear el Director y anadir al arraylist de miembrosEquipo
-							Director.CasoDirector(nombre, apellido, profesion, idEquipo, MienbrosEquipo);
-						}
-
-					}
-					Equipo.getListaEquipos().add(equipo);
-				}
-			}
-		} catch (Exception e) {
-			System.err.println("Error en la lectura para actualizacion jugador");
-		} finally {
-			bfr.close();
+	private void ActualizarEquipo() throws IOException {
+		BufferedReader bfr = new BufferedReader(new FileReader("Equipo.txt"));
+		String linea = "";
+		while (linea != null) {
+			linea = bfr.readLine();
 		}
 	}
 
@@ -133,7 +94,7 @@ public class Equipo {
 			}
 		}
 		// crear el equipo
-		equipo = new Equipo(nombreEquipo, Njugadores, MienbrosEquipo, deporteEquipo);
+		equipo = new Equipo(nombreEquipo, deporteEquipo);
 	}
 	
 	public static void repartirMarcados() {

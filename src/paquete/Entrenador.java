@@ -1,15 +1,11 @@
 package paquete;
 
-import java.util.ArrayList;
 
 public class Entrenador extends Persona {
-	private static int contador = 0;
-	private int id;
-
+	
 	public Entrenador(String nombre, String apellido, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
-		id = contador;
-		contador++;
+		
 	}
 
 	private void EstablecerTitular() {
@@ -32,19 +28,8 @@ public class Entrenador extends Persona {
 			}
 		}
 	}
-	
-	public static void CasoEntrenador(String nombre, String apellido , String profesion, int idEquipo, ArrayList<Persona>MienbrosEquipo) {
-		Entrenador entrenador = new Entrenador(nombre, apellido, profesion, idEquipo);
-		MienbrosEquipo.add(entrenador);
-		Persona.getListaPersona().add(entrenador);
-	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+
 
 }

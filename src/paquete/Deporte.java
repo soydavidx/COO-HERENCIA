@@ -9,23 +9,16 @@ import java.util.ArrayList;
 public class Deporte {
 	
 	public static String barra = "-------------------------------------------------------";
-	private static ArrayList<Deporte>ListaDeporte = new ArrayList<>();
-	private static int contador = 0;
-	private int id;
+	public static ArrayList<Deporte>ListaDeporte = new ArrayList<>();
 	private String nombre;
 	//numero de participantes
 	private int Nparticipantes;
 	
 	public Deporte(String nombre, int nparticipantes) {
-		id = contador;
 		this.nombre = nombre;
 		Nparticipantes = nparticipantes;
-		contador++;
 	}
 	
-	public static void EscribirDeporte() {
-		
-	}
 	
 	public static void mostrarJugadoresDeportes() throws IOException {
 		System.out.println(barra);
@@ -49,16 +42,20 @@ public class Deporte {
 		}finally {
 			br.close();
 		}
-		
-		
 	}
 	
-	public int getId() {
-		return id;
+	public static void crearDeportes() throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("src/Deportes.txt"));
+		// AQUI GUARDAREMOS LAS LINEAS DEL FICHERO
+		String line;
+		// CON ESTE WHILE PODREMOS LEER LOS DATOS DEL FICHERO
+		while ((line = br.readLine()) != null) {
+			String[] datos = line.split(", ");
+			ListaDeporte.add(new Deporte(datos[0], Integer.parseInt(datos[1])));
+		}
+		br.close(); //Borrar si causa error
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}
