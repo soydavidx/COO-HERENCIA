@@ -36,87 +36,23 @@ public class Jugador extends Persona {
 
 	// formato : IdJugador, Marcados, Sanciones, Valor
 
-	public static void ActualizarEquipo() throws IOException {
-		// leer de un archivo
-		BufferedReader bfr = new BufferedReader(new FileReader("Temporal.txt"));
-		try {
-			String linea = "";
-			while (linea != null) {
+	public static void CasoJugador(String[] datos,String nombre, String apellido , String profesion, int idEquipo, ArrayList<Persona>MienbrosEquipo) {
+		int marcados = Integer.parseInt(datos[4]);
+		double Sanciones = Double.parseDouble(datos[5]);
+		double valor = Double.parseDouble(datos[6]);
+		int PuestoInteriorEquipo = Integer.parseInt(datos[7]);
+		String posicion = datos[8];
+		boolean titular = Boolean.parseBoolean(datos[9]);
+		Jugador elJugador = new Jugador(nombre, apellido, posicion, profesion, idEquipo);
+		elJugador.setMarcados(marcados);
+		elJugador.setSanciones(Sanciones);
+		elJugador.setValor(valor);
+		elJugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
+		elJugador.setPosicion(posicion);
+		elJugador.setTitular(titular);
 
-				while (!linea.contains("-")) {
-					linea = bfr.readLine();
-					int idEquipo = 0;
-					ArrayList<Persona> MienbrosEquipo = new ArrayList<>();
-					Equipo equipo = null;
-					// caso equipo
-					if (linea.contains("$")) {
-						// declarar valores de los datos del equipo
-						String[] datos = linea.split("#");
-						idEquipo = Integer.parseInt(datos[0]);
-						String nombreEquipo = datos[1];
-						int Njugadores = Integer.parseInt(datos[2]);
-						String nombreDeporte = datos[3];
-						double puntos = Double.parseDouble(datos[4]);
-						int puestoEquipo = Integer.parseInt(datos[5]);
-						// encontrar la referencia del equipo
-						Deporte deporteEquipo = null;
-						for (Deporte deporte : Deporte.getListaDeporte()) {
-							if (deporte.getNombre().equals(nombreDeporte)) {
-								deporteEquipo = deporte;
-								break;
-							}
-						}
-						// crear el equipo
-						equipo = new Equipo(idEquipo, nombreEquipo, Njugadores, MienbrosEquipo, deporteEquipo);
-						// caso Persona
-					} else {
-						// actualizar los datos de cada jugador
-						String[] datos = linea.split("#");
-						String nombre = datos[1];
-						String apellido = datos[2];
-						String profesion = datos[3];
-						// caso jugador
-						if (linea.contains("@")) {
-							// declarar valores de los datos del jugador
-							int marcados = Integer.parseInt(datos[4]);
-							double Sanciones = Double.parseDouble(datos[5]);
-							double valor = Double.parseDouble(datos[6]);
-							int PuestoInteriorEquipo = Integer.parseInt(datos[7]);
-							String posicion = datos[8];
-							boolean titular = Boolean.parseBoolean(datos[9]);
-							Jugador elJugador = new Jugador(nombre, apellido, posicion, profesion, idEquipo);
-							elJugador.setMarcados(marcados);
-							elJugador.setSanciones(Sanciones);
-							elJugador.setValor(valor);
-							elJugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
-							elJugador.setPosicion(posicion);
-							elJugador.setTitular(titular);
-
-							MienbrosEquipo.add(elJugador);
-							Persona.getListaPersona().add(elJugador);
-							// caso entrenador
-						} else if (linea.contains("%")) {
-							Entrenador entrenador = new Entrenador(nombre, apellido, profesion, idEquipo);
-							MienbrosEquipo.add(entrenador);
-							Persona.getListaPersona().add(entrenador);
-							// caso director
-						} else if (linea.contains("&")) {
-							Director director = new Director(nombre, apellido, profesion, idEquipo);
-							MienbrosEquipo.add(director);
-							Persona.getListaPersona().add(director);
-						}
-
-					}
-					Equipo.getListaEquipos().add(equipo);
-				}
-
-			}
-		} catch (Exception e) {
-			System.err.println("Error en la lectura para actualizacion jugador");
-		} finally {
-			bfr.close();
-		}
-
+		MienbrosEquipo.add(elJugador);
+		Persona.getListaPersona().add(elJugador);
 	}
 
 	// despues de haber jugado una partida

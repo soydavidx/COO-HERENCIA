@@ -14,7 +14,7 @@ public class principal {
 		System.out.println("Practica nº10: Herencia Cooperativa");
 		System.out.println("Un video mas mi gente para perder el tiempo");
 		// Hecho por David, Diego y Peter
-		Jugador.ActualizarEquipo();
+		Equipo.ActualizarTodoEquipo();
 
 	}
 
