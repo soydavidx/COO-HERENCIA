@@ -1,5 +1,7 @@
 package paquete;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Deporte {
@@ -15,6 +17,15 @@ public class Deporte {
 		this.nombre = nombre;
 		Nparticipantes = nparticipantes;
 		contador++;
+	}
+	
+	public static void EscribirDeporte() {
+		
+	}
+	
+	public static void LeerDeporte() {
+		BufferedReader bfr = new BufferedReader(new FileReader("Deporte.txt"));
+		bfr.readLine();
 	}
 	
 	public int getId() {

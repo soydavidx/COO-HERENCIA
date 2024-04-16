@@ -135,6 +135,14 @@ public class Equipo {
 		// crear el equipo
 		equipo = new Equipo(nombreEquipo, Njugadores, MienbrosEquipo, deporteEquipo);
 	}
+	
+	public static void repartirMarcados() {
+		
+	}
+	
+	public static void repartirSanciones() {
+		
+	}
 
 	public int getId() {
 		return id;

@@ -22,6 +22,10 @@ public class Partida {
 		this.deporte = deporte;
 		contador++;
 	}
+	private static void EscribirPartida() {
+		
+	}
+	
 
 	private void EstablecerResultadosPartida() {
 
