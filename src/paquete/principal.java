@@ -18,8 +18,11 @@ public class principal {
 		Persona.crearEquiposYJugadores();
 		// Hecho por David, Diego y Peter
 		//Equipo.ActualizarTodoEquipo();
+		System.out.println("Prueba");
 
 	}
+	
+	
 
 	public static void EscribirJugadoresMejoresPartidaSiguiente() {
 

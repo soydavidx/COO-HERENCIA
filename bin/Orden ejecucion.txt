@@ -1,25 +1,25 @@
 Inicio del programa
 
-lectura del archivo deporte (LeerDeporte)
+lectura del archivo deporte (LeerDeporte)//hecho
 
-lectura del archivo MiembrosEquipo (ActualizarTodoEquipo)
+lectura del archivo MiembrosEquipo (crearEquiposYJugadores)//hecho
 
-(EstablecerResultadosPartida)
+(EstablecerResultadosPartida)--david
 {puntuacion(x:y), sanciones de cada Equipo}
 
-(repartirMarcados)
+(repartirMarcados)--david
 
-(repartirSanciones)
+(repartirSanciones)--david
 
-(CalcularValor(cada jugador))
+(CalcularValor(cada jugador))//hecho
 
-(EstablecerRankingInterior)
+(EstablecerRankingInterior)//hecho
 
-(EstablecerTitular)
+(EstablecerTitular)//hecho
 
 (RankingLiga)
 
-Pedir el usuario que funcion desea
+Pedir el usuario que funcion desea--diego
 
 1.mostrar datos equipo
 2.fichar
@@ -28,4 +28,6 @@ Pedir el usuario que funcion desea
 (fin ejecucion consola)
 
 guardar archivos
+1.(EscribirDatosJugador)
+2.(EscribirDatosPartida)
 Fin
