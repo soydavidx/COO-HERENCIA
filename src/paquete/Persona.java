@@ -1,20 +1,53 @@
 package paquete;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Persona {
 	private static ArrayList<Persona>ListaPersona = new ArrayList<>();
 	
+	private static int cont = 0;
+	private int id;
 	private String nombre;
 	private String apellido;
 	private String profesion;
 	private int idEquipo;
 	
-	public Persona(String nombre, String apellido,String profesion,int idEquipo) {
+	public Persona(String nombre, String apellido, String profesion, int idEquipo) {	
+		cont++;
+		this.id = cont;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.profesion = profesion;
 		this.idEquipo = idEquipo;
+	}
+	
+	public static void crearEquiposYJugadores() throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("src/MiembrosEquipo.txt"));
+		// AQUI GUARDAREMOS LAS LINEAS DEL FICHERO
+		String line;
+		// CON ESTE WHILE PODREMOS LEER LOS DATOS DEL FICHERO
+		while ((line = br.readLine()) != null) {
+			String[] datos = line.split(", ");
+
+			switch (datos[2]) {
+			case "jugador" -> ListaPersona.add(new Jugador(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]), datos[4], Double.parseDouble(datos[5]), Double.parseDouble(datos[6])));
+			case "entrenador" -> ListaPersona.add(new Entrenador(datos[0], datos[1], datos[2], Integer.parseInt(datos[3])));
+			case "director" -> ListaPersona.add(new Director(datos[0], datos[1], datos[2], Integer.parseInt(datos[3])));
+			case "Sepak Takraw" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.ListaDeporte.get(0)));
+			case "voleibol" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.ListaDeporte.get(1)));
+			case "Rugby Subacuatico" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.ListaDeporte.get(2)));
+			}
+		}
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getNombre() {

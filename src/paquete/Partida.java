@@ -3,6 +3,7 @@ package paquete;
 import java.util.ArrayList;
 
 public class Partida {
+	//No editada en el Pull Request
 	private static int contador = 0;
 
 	private static ArrayList<Partida> ListaPartida = new ArrayList<>();
@@ -21,9 +22,6 @@ public class Partida {
 		this.puntuacion = puntuacion;
 		this.deporte = deporte;
 		contador++;
-	}
-	private static void EscribirPartida() {
-		
 	}
 	
 
