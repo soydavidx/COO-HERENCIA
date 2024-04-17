@@ -1,4 +1,4 @@
-##Cosas pendientes por hacer
+#Cosas pendientes por hacer
 <hr/>
 Inicio del programa
 
