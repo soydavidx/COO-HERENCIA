@@ -1,11 +1,12 @@
 package paquete;
 
-
 public class Entrenador extends Persona {
-	
+	private static int contador = 1;
+
 	public Entrenador(String nombre, String apellido, String profesion, int equipo) {
 		super(nombre, apellido, profesion, equipo);
-		
+		super.setId(contador);
+		contador++;
 	}
 
 	private void EstablecerTitular() {
@@ -28,8 +29,6 @@ public class Entrenador extends Persona {
 			}
 		}
 	}
-
-
 
 
 }
