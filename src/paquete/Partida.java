@@ -30,6 +30,7 @@ public class Partida {
 		//bucle que recorra todos los deporte
 		for (Deporte deporte : Deporte.getListaDeporte()) {
 			// ---------------------------------------1
+			System.out.println("Jugando en el deporte " + deporte.getNombre());
 			//arraylist de array de [1] (idEquipo y veces ) para anadir todos los equipos de un mismo deporte e ir suman 1 a veces cada vez que participe
 			ArrayList<int[]> EquiposRestantes = new ArrayList<>();
 			// anadir todos los equipos con mismo deporte
@@ -51,6 +52,9 @@ public class Partida {
 				//decidir que equipos van a jugar en esta reiteracion
 				int equipo1 = DecidirEquipoCompetir(veces0, veces1)[0];
 				int equipo2 = DecidirEquipoCompetir(veces0, veces1)[1];
+				String nombreEquipo1 = ReferenciaEquipo(equipo1).getNombreEquipo();
+				String nombreEquipo2 = ReferenciaEquipo(equipo2).getNombreEquipo();
+				System.out.println("Van a jugar los equipos " + nombreEquipo1 + nombreEquipo2);
 				// verificar si hay algun equipo restante por competir
 				salir = VerificarEquipoRestante(veces0, veces1);
 				// mientras que haya equipos para jugar , jugar partida
@@ -146,10 +150,11 @@ public class Partida {
 		for (Persona persona : equipo1.getGrupoPersonales()) {
 			if (persona instanceof Jugador) {
 				Jugador jugador = (Jugador) persona;
-
+				// hacer que el jugador pueda marcar y ser sancionado
 				jugador.Marcar();
+				System.out.println("El jugador " + jugador.getNombre() + " ha marcado " + jugador.getMarcados());
 				jugador.Sancionar();
-
+				System.out.println("El jugador " + jugador.getNombre() + " ha sido sancionado " + jugador.getSanciones());
 				puntuacionEquipo1 = puntuacionEquipo1 + jugador.getMarcados();
 				equipo1.setSancionTotal(sancionEquipo1);
 			}
@@ -161,8 +166,9 @@ public class Partida {
 				Jugador jugador = (Jugador) persona;
 				// hacer que el jugador pueda marcar y ser sancionado
 				jugador.Marcar();
+				System.out.println("El jugador " + jugador.getNombre() + " ha marcado " + jugador.getMarcados());
 				jugador.Sancionar();
-
+				System.out.println("El jugador " + jugador.getNombre() + " ha sido sancionado " + jugador.getSanciones());
 				puntuacionEquipo2 = puntuacionEquipo2 + jugador.getMarcados();
 				equipo2.setSancionTotal(sancionEquipo2);
 			}
@@ -172,11 +178,14 @@ public class Partida {
 		// si gana el equipo1
 		if (puntuacionEquipo1 > puntuacionEquipo2) {
 			equipo1.setPuntos(puntuacionEquipo1 + 3);
+			System.out.println("Gano el equipo : " + ReferenciaEquipo(idEquipo1).getNombreEquipo() + " con una puntuacion del " + equipo1.getPuntos());
 			// si gana el equipo2
 		} else if (puntuacionEquipo1 < puntuacionEquipo2) {
 			equipo2.setPuntos(puntuacionEquipo2 + 3);
+			System.out.println("Gano el equipo : " + ReferenciaEquipo(idEquipo2).getNombreEquipo() + " con una puntuacion del " + equipo2.getPuntos());
 			// si empatan pues no se anade nada
 		}
+		
 
 	}
 
