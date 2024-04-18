@@ -85,6 +85,22 @@ public class Jugador extends Persona {
 	private double CalcularValor() {
 		return (marcados * 1000) - (sanciones * 500);
 	}
+	
+	public void Marcar() {
+		//el jugador puede marcar de 0 a 3 
+		marcados = Partida.Rng(3)-1;
+	}
+	
+	public void Sancionar() {
+		//un jugador puede recibir o no sanciones si recibe sanciones entonces recibira con un rango de 100
+		int sancion = Partida.Rng(2) - 1;
+		if (sancion == 0) {
+			sanciones = 0;
+		}
+		else if (sancion == 1){
+			sanciones = Partida.Rng(100);
+		}
+	}
 
 	// empieza el getter y setter
 
