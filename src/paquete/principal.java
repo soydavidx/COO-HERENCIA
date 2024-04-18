@@ -7,21 +7,19 @@ import java.util.Scanner;
 
 public class principal {
 	public static String signo = "#";
+	public static String barra = "------------------------------------------------";
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		// actualizar los datos de los jugadores al la aplicacion
 		System.out.println("Practica nº10: Herencia Cooperativa");
 		System.out.println("Un video mas mi gente para perder el tiempo");
-		Deporte.mostrarJugadoresDeportes();
+		// Hecho por David, Diego y Peter
 		Deporte.crearDeportes();
 		Persona.crearEquiposYJugadores();
 		//leer el archivp LigaDeTodosDeportes
 		//jugar todos los partidos de cada deporte
 		Partida.LigaDeTodosDeportes();
-		// Hecho por David, Diego y Peter
-		//Equipo.ActualizarTodoEquipo();
-		System.out.println("Prueba");
 
 	}
 
@@ -37,47 +35,28 @@ public class principal {
 		if (verificarNombreEquipo(NombreEquipo) == false) {
 			System.out.println("Vuelva a introducir un nombre del equipo existente Porfavor");
 			MostrarDatos();
-		}
-
-		// procesos para mostrar informacion de un equipo
-
+		}else {
+			// procesos para mostrar informacion de un equipo
+			   for (Equipo equipo : Equipo.ListaEquipos) {
+				if (equipo.getNombreEquipo().toLowerCase().equals(NombreEquipo.toLowerCase())) {
+					System.out.println("Datos del equipo: "+equipo.getNombreEquipo());
+					System.out.println("Deporte: "+equipo.getDeporte().getNombre());
+					System.out.println("Jugadores en el equipo: "+equipo.getGrupoPersonales().size());
+					System.out.println("Ranking del equipo: "+equipo.getPuntos());
+					System.out.println(barra);
+					for (Persona persona : equipo.getGrupoPersonales()) {
+						System.out.println("Jugador: "+persona.getNombre()+" "+persona.getApellido());
+					}
+				}
+			}
+		  }
 		scanner.close();
 	}
 
-	public static void fichar() {
+	public static void intercambio() {
 		// se debera indicar el equipo para fichar jugadores
 		Scanner scanner = new Scanner(System.in);
 		String NombreEquipo = scanner.nextLine();
-		// verificar si el equipo tecleado existe
-		if (verificarNombreEquipo(NombreEquipo) == false) {
-			// procesos para fichar un jugador
-
-		} else {
-			System.out.println("Vuelva a introducir un nombre del equipo existente Porfavor");
-			fichar();
-		}
-		scanner.close();
-	}
-
-	public static void vender() {
-		// se indicara el equipo para vender jugadores y el equipo que lo va a comprar
-		// introduccion del equipo de venta
-		Scanner scanner = new Scanner(System.in);
-		String NombreEquipo = scanner.nextLine();
-		// verificar si el equipo tecleado existe
-		if (verificarNombreEquipo(NombreEquipo) == false) {
-			System.out.println("Vuelva a introducir un nombre del equipo existente Porfavor");
-			vender();
-		}
-		// introduccion del equipo de compra
-		String NombreEquipoOponente = "";
-		do {
-			NombreEquipoOponente = scanner.nextLine();
-		} while (verificarNombreEquipo(NombreEquipoOponente) == true);
-
-		// procesos para vender el jugador
-
-		scanner.close();
 	}
 
 	public static boolean verificarNombreEquipo(String Nombre) {
@@ -99,8 +78,7 @@ public class principal {
 			for (Equipo equipo : Equipo.getListaEquipos()) {
 				// formato : id, nombre, nJugadores, nombre deporte, puntos, puesto
 				bfw.write(equipo.getId() + signo + equipo.getNombreEquipo() + signo + equipo.getnJugadores() + signo
-						+ equipo.getDeporte().getNombre() + signo + equipo.getPuntos() + signo
-						+ equipo.getPuestoRanking());
+						+ equipo.getDeporte().getNombre() + signo + equipo.getPuntos());
 				bfw.write(System.lineSeparator());
 				for (Persona persona : equipo.getGrupoPersonales()) {
 					// formato :Id, nombre, apellido, Profesion, Posicion, Marcados, Sanciones, valor , PuestoInterior, titular

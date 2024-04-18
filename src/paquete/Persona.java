@@ -1,23 +1,22 @@
 package paquete;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Persona {
-	private static ArrayList<Persona>ListaPersona = new ArrayList<>();
+	protected static ArrayList<Persona>ListaPersona = new ArrayList<>();
 	
-	private static int cont = 0;
 	private int id;
 	private String nombre;
 	private String apellido;
 	private String profesion;
 	private int idEquipo;
 	
-	public Persona(String nombre, String apellido, String profesion, int idEquipo) {	
-		cont++;
-		this.id = cont;
+	public Persona(String nombre, String apellido, String profesion, int idEquipo) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.profesion = profesion;
@@ -36,11 +35,41 @@ public class Persona {
 			case "jugador" -> ListaPersona.add(new Jugador(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]), datos[4], Double.parseDouble(datos[5]), Double.parseDouble(datos[6])));
 			case "entrenador" -> ListaPersona.add(new Entrenador(datos[0], datos[1], datos[2], Integer.parseInt(datos[3])));
 			case "director" -> ListaPersona.add(new Director(datos[0], datos[1], datos[2], Integer.parseInt(datos[3])));
-			case "Sepak Takraw" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.ListaDeporte.get(0)));
-			case "voleibol" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.ListaDeporte.get(1)));
-			case "Rugby Subacuatico" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.ListaDeporte.get(2)));
+			case "Sepak Takraw" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.Deportes.get(0)));
+			case "voleibol" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.Deportes.get(1)));
+			case "Rugby Subacuatico" -> Equipo.ListaEquipos.add(new Equipo(datos[0], Deporte.Deportes.get(2)));
 			}
 		}
+		for (Equipo equipo : Equipo.ListaEquipos) {
+			for (Persona persona : ListaPersona) {
+				if (persona.getIdEquipo()==equipo.getId())
+					equipo.getGrupoPersonales().add(persona);
+			}
+		}
+		for (Persona persona : Equipo.ListaEquipos.get(1).getGrupoPersonales()) {
+			System.out.println(persona.getNombre());
+		}
+	}
+	
+	public static void ActualizarFicheroEquipos() throws IOException {
+		BufferedWriter brw = new BufferedWriter(new FileWriter("src/MiembrosEquipo.txt"));
+
+		for (Equipo equipo : Equipo.ListaEquipos) {
+			brw.write(equipo.getNombreEquipo() + ", " + 0 + ", " + equipo.getDeporte().getNombre() + "\n");
+			for (Persona persona : equipo.getGrupoPersonales()) {
+				switch (persona.getProfesion()) {
+				case "jugador" ->
+					brw.write(persona.getNombre() + ", " + persona.getApellido() + ", " + persona.getProfesion() + ", "
+							+ persona.getIdEquipo() + ", " + ((Jugador) persona).getPosicion() + ", "
+							+ ((Jugador) persona).getTotalSanciones() + ", " + ((Jugador) persona).getTotalMarcados() + "\n");
+				case "entrenador" -> brw.write(persona.getNombre() + ", " + persona.getApellido() + ", "
+						+ persona.getProfesion() + ", " + persona.getIdEquipo() + "\n");
+				case "director" -> brw.write(persona.getNombre() + ", " + persona.getApellido() + ", "
+						+ persona.getProfesion() + ", " + persona.getIdEquipo() + "\n");
+				}
+			}
+		}
+		brw.close();
 	}
 
 	public int getId() {

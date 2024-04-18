@@ -6,11 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Jugador extends Persona {
-
-	
+	private static int contador = 1;	
 	private String posicion;
-	private double TotalSanciones;
-	private double TotalMarcados;
 
 	// estos atributo se modificara cada vez que se cargue la aplicacion leyendo
 	// datos de la carpeta temporal
@@ -20,66 +17,17 @@ public class Jugador extends Persona {
 	private int PuestoInteriorEquipo;
 	private boolean titular;
 	private int IdEquipo;
+	private int TotalSanciones;
+	private int TotalMarcados;
 
 	public Jugador(String nombre, String apellido, String profesion, int equipo, String posicion, double TotalSanciones, double TotalMarcados) {
 		super(nombre, apellido, profesion, equipo);
 		this.posicion = posicion;
 		// valor calculado con el metodo CalcularValor
-		this.TotalSanciones = TotalSanciones;
-		this.TotalMarcados = TotalMarcados;
+		super.setId(contador);
+		this.valor = CalcularValor();
+		contador++;
 	}
-
-	// formato : IdJugador, Marcados, Sanciones, Valor
-
-	public static void ActualizarEquipo() throws IOException {
-		// leer de un archivo
-		BufferedReader bfr = new BufferedReader(new FileReader("Temporal.txt"));
-		try {
-			String linea = "";
-			while (linea != null) {
-				linea = bfr.readLine();
-				do {
-					if (linea.contains("-")) {
-						// declarar valores de los datos del equipo
-						String[] datos = linea.split("#");
-						int idEquipo = Integer.parseInt(datos[0]);
-					}
-					if (linea.contains("$")) {
-						// declarar valores de los datos del jugador
-						String[] datos = linea.split("#");
-						int id = Integer.parseInt(datos[0]);
-						int marcados = Integer.parseInt(datos[1]);
-						double Sanciones = Double.parseDouble(datos[2]);
-						double valor = Double.parseDouble(datos[3]);
-						int PuestoInteriorEquipo = Integer.parseInt(datos[4]);
-						String posicion = datos[5];
-						boolean titular = Boolean.parseBoolean(datos[6]);
-						// actualizar los datos de cada jugador
-						for (Persona persona : Persona.getListaPersona()) {
-							if (persona instanceof Jugador) {
-								Jugador jugador = (Jugador) persona;
-								if (jugador.getId() == id) {
-									jugador.setMarcados(marcados);
-									jugador.setSanciones(Sanciones);
-									jugador.setValor(valor);
-									jugador.setPuestoInteriorEquipo(PuestoInteriorEquipo);
-									jugador.setPosicion(posicion);
-									jugador.setTitular(titular);
-									break;
-								}
-							}
-						}
-					}
-				} while (linea.contains("-"));
-			}
-		} catch (Exception e) {
-			System.err.println("Error en la lectura para actualizacion jugador");
-		} finally {
-			bfr.close();
-		}
-		}
-	
-	
 
 	// despues de haber jugado una partida
 	private double CalcularValor() {
@@ -119,14 +67,6 @@ public class Jugador extends Persona {
 	public void setSanciones(double sanciones) {
 		this.sanciones = sanciones;
 	}
-
-	public double getTotalSanciones() {
-		return TotalSanciones;
-	}
-	
-	public void setTotalSanciones(double totalSanciones) {
-		TotalSanciones = totalSanciones;
-	}
 	
 	public int getMarcados() {
 		return marcados;
@@ -134,14 +74,6 @@ public class Jugador extends Persona {
 
 	public void setMarcados(int marcados) {
 		this.marcados = marcados;
-	}
-
-	public double getTotalMarcados() {
-		return TotalMarcados;
-	}
-	
-	public void setTotalMarcados(double totalMarcados) {
-		TotalMarcados = totalMarcados;
 	}
 	
 	public double getValor() {
@@ -175,6 +107,23 @@ public class Jugador extends Persona {
 	public void setIdEquipo(int idEquipo) {
 		IdEquipo = idEquipo;
 	}
+
+	public int getTotalSanciones() {
+		return TotalSanciones;
+	}
+
+	public void setTotalSanciones(int totalSanciones) {
+		TotalSanciones = totalSanciones;
+	}
+
+	public int getTotalMarcados() {
+		return TotalMarcados;
+	}
+
+	public void setTotalMarcados(int totalMarcados) {
+		TotalMarcados = totalMarcados;
+	}
+	
 
 	// termina el getter y setter
 

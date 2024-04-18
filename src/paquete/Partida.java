@@ -28,7 +28,7 @@ public class Partida {
 	public static void LigaDeTodosDeportes() {
 		// ---------------------------------------2
 		//bucle que recorra todos los deporte
-		for (Deporte deporte : Deporte.getListaDeporte()) {
+		for (Deporte deporte : Deporte.getDeportes()) {
 			// ---------------------------------------1
 			System.out.println("Jugando en el deporte " + deporte.getNombre());
 			//arraylist de array de [1] (idEquipo y veces ) para anadir todos los equipos de un mismo deporte e ir suman 1 a veces cada vez que participe

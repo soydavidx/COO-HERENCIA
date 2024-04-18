@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Equipo {
 	public static ArrayList<Equipo> ListaEquipos = new ArrayList<>();
 	private static int contador = 1;
-
+	private int SancionTotal;
 	private int id;
 
 	private String nombreEquipo;
@@ -17,10 +17,7 @@ public class Equipo {
 
 	private ArrayList<Persona> GrupoPersonales = new ArrayList<>();
 	private Deporte deporte;
-	private int PuestoRanking;// este atributo se modificara cada vez que se cargue la aplicacion leyendo
-	private double puntos;
-	
-	private int SancionTotal;
+	private int puntos;
 	// datos de la carpeta temporal
 
 	public Equipo(String nombreEquipo, Deporte deporte) {
@@ -65,38 +62,19 @@ public class Equipo {
 					}
 				}
 			}
-			//sumar i para la siguiente reiteracion
 		}
 	}
 
 	// metodo para actualizar el Datos del equipo cada vez que se inicie el programa
-	private void ActualizarEquipo() throws IOException {
-		BufferedReader bfr = new BufferedReader(new FileReader("Equipo.txt"));
-		String linea = "";
-		while (linea != null) {
-			linea = bfr.readLine();
-		}
-	}
-
-	private static void CasoEquipo(String linea, int idEquipo, Equipo equipo, ArrayList<Persona> MienbrosEquipo) {
-		// declarar valores de los datos del equipo
-		String[] datos = linea.split("#");
-		idEquipo = Integer.parseInt(datos[0]);
-		String nombreEquipo = datos[1];
-		int Njugadores = Integer.parseInt(datos[2]);
-		String nombreDeporte = datos[3];
-		double puntos = Double.parseDouble(datos[4]);
-		int puestoEquipo = Integer.parseInt(datos[5]);
-		// encontrar la referencia del equipo
-		Deporte deporteEquipo = null;
-		for (Deporte deporte : Deporte.getListaDeporte()) {
-			if (deporte.getNombre().equals(nombreDeporte)) {
-				deporteEquipo = deporte;
-				break;
+	public static void actualizarEquipos() throws IOException {
+		for (Equipo equipo : ListaEquipos) {
+			equipo.getGrupoPersonales().clear();
+			for (Persona persona : Persona.ListaPersona) {
+				if (persona.getIdEquipo()==equipo.getId())
+					equipo.getGrupoPersonales().add(persona);
 			}
 		}
-		// crear el equipo
-		equipo = new Equipo(nombreEquipo, deporteEquipo);
+		Persona.ActualizarFicheroEquipos();
 	}
 	
 	public static void repartirMarcados() {
@@ -139,19 +117,11 @@ public class Equipo {
 		GrupoPersonales = grupoPersonales;
 	}
 
-	public int getPuestoRanking() {
-		return PuestoRanking;
-	}
-
-	public void setPuestoRanking(int puestoRanking) {
-		PuestoRanking = puestoRanking;
-	}
-
-	public double getPuntos() {
+	public int getPuntos() {
 		return puntos;
 	}
 
-	public void setPuntos(double puntos) {
+	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
 
@@ -178,7 +148,8 @@ public class Equipo {
 	public void setSancionTotal(int sancionTotal) {
 		SancionTotal = sancionTotal;
 	}
-	
+
+
 	
 
 }

@@ -1,17 +1,14 @@
 package paquete;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class Deporte {
 
-	public static String barra = "-------------------------------------------------------";
-	public static ArrayList<Deporte> ListaDeporte = new ArrayList<>();
 	private String nombre;
-	// numero de participantes
+	public static ArrayList<Deporte> Deportes = new ArrayList<Deporte>();
 	private int Nparticipantes;
 
 	public Deporte(String nombre, int nparticipantes) {
@@ -19,45 +16,14 @@ public class Deporte {
 		Nparticipantes = nparticipantes;
 	}
 
-	public static void mostrarJugadoresDeportes() throws IOException {
-		System.out.println(barra);
-		System.out.println("Jugadores disponibles en los diferentes deportes: \n");
-		BufferedReader br = new BufferedReader(new FileReader("F:\\worksplace\\COO-HERENCIA\\src\\deporte.txt"));
-		try {
-			String linea;
-			// Lee todas las lineas del archivo hasta encontrar una linea nulla
-			while ((linea = br.readLine()) != null) {
-				String[] campos = linea.split(", ");
-				String deporte = campos[0].trim();
-				int numeroJugadores = Integer.parseInt(campos[1].trim());
-
-				// Se imprime los datos
-				System.out
-						.println("■ En el deporte " + deporte + " hay un total de " + numeroJugadores + " jugadores.");
-			}
-			System.out.println(barra);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			br.close();
-		}
-	}
-
 	public static void crearDeportes() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("src/Deportes.txt"));
-		try {
-			// AQUI GUARDAREMOS LAS LINEAS DEL FICHERO
-			String line;
-			// CON ESTE WHILE PODREMOS LEER LOS DATOS DEL FICHERO
-			while ((line = br.readLine()) != null) {
-				String[] datos = line.split(", ");
-				ListaDeporte.add(new Deporte(datos[0], Integer.parseInt(datos[1])));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			br.close(); // Borrar si causa error
+		// AQUI GUARDAREMOS LAS LINEAS DEL FICHERO
+		String line;
+		// CON ESTE WHILE PODREMOS LEER LOS DATOS DEL FICHERO
+		while ((line = br.readLine()) != null) {
+			String[] datos = line.split(", ");
+			Deportes.add(new Deporte(datos[0], Integer.parseInt(datos[1])));
 		}
 	}
 
@@ -77,12 +43,14 @@ public class Deporte {
 		Nparticipantes = nparticipantes;
 	}
 
-	public static ArrayList<Deporte> getListaDeporte() {
-		return ListaDeporte;
+	public static ArrayList<Deporte> getDeportes() {
+		return Deportes;
 	}
 
-	public static void setListaDeporte(ArrayList<Deporte> listaDeporte) {
-		ListaDeporte = listaDeporte;
+	public static void setDeportes(ArrayList<Deporte> deportes) {
+		Deportes = deportes;
 	}
+	
+	
 
 }
