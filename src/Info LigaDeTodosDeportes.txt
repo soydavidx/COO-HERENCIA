@@ -1,0 +1,23 @@
+
+		
+		1. crear un arraylist de array de [1] (idEquipo y veces ) para anadir todos los equipos de un mismo deporte e ir suman 1 a veces cada vez que participe 
+
+		2. un bucle que recorra todos los deporte(lo de abajo se ejecuta para cada deporte)
+		
+		3. un bucle para que vayan jugando hasta que en el arraylist las veces de cada equipo quede en 2 (un equipo solamente puede competir 2 veces)
+		//orden a jugar (enlazar el equipo que no haya jugado con otro > enlazar el equipo que haya jugado 1vez con otro)
+
+		3.1. determinar que equipos van a jugar
+		3.1.1. decidir los equipos a jugar y que no se repitan los id
+
+		3.2. cada jugador consigue una marcacion y sancion aleatorio
+		3.2.1. decidir ganador y perdedor
+		3.2.2. cada victoria +3 pts
+
+		3.3. conseguir las puntuaciones de cada equipo segun la victoria, guardar los puntos y sancionTotal
+		(sanciones no afecta a puntos del equipo)
+
+		3.4. sumar 1 a las veces a los equipos que han competido
+
+		4. actualizar el ranking de la liga tras el bucle
+	

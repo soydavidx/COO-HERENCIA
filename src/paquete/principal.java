@@ -16,13 +16,14 @@ public class principal {
 		Deporte.mostrarJugadoresDeportes();
 		Deporte.crearDeportes();
 		Persona.crearEquiposYJugadores();
+		//leer el archivp LigaDeTodosDeportes
+		//jugar todos los partidos de cada deporte
+		Partida.LigaDeTodosDeportes();
 		// Hecho por David, Diego y Peter
 		//Equipo.ActualizarTodoEquipo();
 		System.out.println("Prueba");
 
 	}
-	
-	
 
 	public static void EscribirJugadoresMejoresPartidaSiguiente() {
 
