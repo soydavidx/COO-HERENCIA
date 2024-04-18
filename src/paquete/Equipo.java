@@ -19,6 +19,8 @@ public class Equipo {
 	private Deporte deporte;
 	private int PuestoRanking;// este atributo se modificara cada vez que se cargue la aplicacion leyendo
 	private double puntos;
+	
+	private int SancionTotal;
 	// datos de la carpeta temporal
 
 	public Equipo(String nombreEquipo, Deporte deporte) {
@@ -168,5 +170,15 @@ public class Equipo {
 	public static void setListaEquipos(ArrayList<Equipo> listaEquipos) {
 		ListaEquipos = listaEquipos;
 	}
+
+	public int getSancionTotal() {
+		return SancionTotal;
+	}
+
+	public void setSancionTotal(int sancionTotal) {
+		SancionTotal = sancionTotal;
+	}
+	
+	
 
 }
